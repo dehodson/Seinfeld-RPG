@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<title>The Chronicles of Seinfeld</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body onkeydown="keyPressed(event);">
+	<div id="main">
+		<div id="battle-text">The Enraged Newman approaches!</div>
+		<img id="enemy" height="200" width="325" src="images/newman.jpg" />
+		<div id="char0" class="card">
+			<img id="char0-portrait" class="portrait" height="150" width="150" src="images/george.jpg" />
+			<span id="char0-name" class="name">George</span><br />
+			<span id="char0-hp" class="hp">HP: 11/30</span><br />
+			<span id="char0-menu" class="menu"></span><br />
+			<div class="background-status" style="background-color:#D22">
+				<span id="char0-status" class="status"></span>
+			</div>
+		</div>
+		<div id="char1" class="card">
+			<img id="char1-portrait" class="portrait" height="150" width="150" src="images/jerry.jpg" />
+			<span id="char1-name" class="name">Jerry</span><br />
+			<span id="char1-hp" class="hp">HP: 25/35</span><br />
+			<span id="char1-menu" class="menu"></span><br />
+			<div class="background-status" style="background-color:#55E">
+				<span id="char1-status" class="status"></span>
+			</div>
+		</div>
+		<div id="char2" class="card">
+			<img id="char2-portrait" class="portrait" height="150" width="150" src="images/elaine.jpg" />
+			<span id="char2-name" class="name">Elaine</span><br />
+			<span id="char2-hp" class="hp">HP: 22/23</span><br />
+			<span id="char2-menu" class="menu"></span><br />
+			<div class="background-status" style="background-color:#EE2">
+				<span id="char2-status" class="status"></span>
+			</div>
+		</div>
+		<div id="char3" class="card">
+			<img id="char3-portrait" class="portrait" height="150" width="150" src="images/kramer.jpg" />
+			<span id="char3-name" class="name">Kramer</span><br />
+			<span id="char3-hp" class="hp">HP: 5/20</span><br />
+			<span id="char3-menu" class="menu"></span><br />
+			<div class="background-status" style="background-color:#5E5">
+				<span id="char3-status" class="status"></span>
+			</div>
+		</div>
+	</div>
+	<div id="main2">
+		<div id="character-speech">
+			<img id="character-speech-portrait" src="images/kramer.jpg" />
+			<div id="character-speech-text">Watch out for Newman!</div>
+		</div>
+	</div>
+	<script src="rpg.js"></script>
+</body>
+</html>
