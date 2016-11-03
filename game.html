@@ -163,6 +163,55 @@
 		padding:15px;
 		font-size:1.5em;
 	}
+
+	#main2{
+		width:  1024px;
+		height: 768px;
+
+		background-color: black;
+		position: absolute;
+		overflow: hidden;
+
+		background-repeat: no-repeat;
+	    background-position: 50% 0;
+	    background-size: cover;
+
+		z-index: 1;
+
+		top:    0;
+		bottom: 0;
+		left:   0;
+		right:  0;
+		margin: auto;
+	}
+	#character-speech{
+		width:900px;
+		height:122px;
+		position: absolute;
+		left:62px;
+		bottom:30px;
+		background-color: white;
+		border-radius:10px;
+		font-size:1.5em;
+	}
+	#character-speech-portrait{
+		position: absolute;
+		height: 100px;
+		width:  100px;
+		left: 9px;
+		top: 10px;
+		border:1px solid black;
+	}
+	#character-speech-text{
+		width:770px;
+		height:92px;
+		position: absolute;
+		right:0px;
+		top:0px;
+		background-color: white;
+		padding:15px 0px 15px;
+		border-radius:10px;
+	}
 </style>
 </head>
 <body onkeydown="keyPressed(event);">
@@ -206,11 +255,17 @@
 			</div>
 		</div>
 	</div>
+	<div id="main2">
+		<div id="character-speech">
+			<img id="character-speech-portrait" src="images/kramer.jpg" />
+			<div id="character-speech-text">Watch out for Newman!</div>
+		</div>
+	</div>
 	<script>
-		var gameMode = 0;
+		var gameMode = 1;
 
 		var characters = [["George", 30, 30, 5, 0, 1, 1, ["Back"]], ["Jerry", 25, 35, 4, 0, 2, 1, ["Back"]], ["Elaine", 23, 23, 3, 0, 5, 1, ["Back", "Nip Slip"]], ["Kramer", 20, 20, 6, 0, 3, 1, ["Back"]]];
-		var enemy      = ["Enraged Newman", 40, 40, 10, 1, "newman.jpg"];
+		var enemy      = ["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"];
 		var selectedCharacter = 0;
 		var battleState = 0;
 		var animations = [];
@@ -223,6 +278,9 @@
 		var menuOptions   = battleOptions;
 		var victoryQuotes = ["Yeah baby!", "All right!", "Get out!", "Giddy up!"]
 		var isNipSlip     = false;
+
+		var cutscene = ["images/prison.jpg", ["images/jerry.jpg", "Well, we're finally out of prison. What's the first thing we do?"], ["images/kramer.jpg", "We celebrate, of course! Let's go get a box of cuban cigars."]]
+		var cutscenePosition = 1;
 
 		function getRandomInt(min, max) {
 			min = Math.ceil(min);
@@ -438,6 +496,9 @@
 			setBattleText("The gang confronts "+enemy[0]+".");
 			menuOptions = battleOptions;
 			battleState = 0;
+			gameMode    = 0;
+			document.getElementById("main").style.visibility = "visible";
+			document.getElementById("main2").style.visibility = "hidden";
 			selectedCharacter = 0;
 		}
 
@@ -558,21 +619,6 @@
 			}
 		}
 
-		function keyPressed(event){
-			if(gameMode == 0){
-				if(event.which == 13 && canPress){  //enter
-					battleStep();
-				};
-			}
-			if(isMenu){
-				if(event.which == 38){
-					changeMenu(-1);
-				}else if(event.which == 40){
-					changeMenu(1);
-				}
-			}
-		}
-
 		function doAnimation(){
 			for(var i = animations.length - 1; i >= 0; i--){
 				if(animations[i][0] == "damage"){
@@ -625,7 +671,45 @@
 			}
 		}
 
-		startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
+		function startCutscene(arr){
+			cutscene = arr;
+			document.getElementById("main2").style.backgroundImage = "url('"+cutscene[0]+"')";
+			cutscenePosition = 1;
+			gameMode = 1;
+			document.getElementById("character-speech-text").innerHTML = cutscene[cutscenePosition][1];
+			document.getElementById("character-speech-portrait").src   = cutscene[cutscenePosition][0];
+		}
+
+		function cutsceneStep(){
+			if(cutscenePosition < cutscene.length - 1){
+				cutscenePosition += 1;
+				document.getElementById("character-speech-text").innerHTML = cutscene[cutscenePosition][1];
+				document.getElementById("character-speech-portrait").src   = cutscene[cutscenePosition][0];
+			}else{
+				startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
+			}
+		}
+
+		function keyPressed(event){
+			if(event.which == 13 && canPress){  //enter
+				if(gameMode == 0){
+					battleStep();
+				}else if(gameMode == 1){
+					cutsceneStep();
+				}
+			};
+			if(isMenu){
+				if(event.which == 38){
+					changeMenu(-1);
+				}else if(event.which == 40){
+					changeMenu(1);
+				}
+			}
+		}
+
+		startCutscene(cutscene);
+
+		//startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
 	</script>
 </body>
 </html>
