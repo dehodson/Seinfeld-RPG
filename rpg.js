@@ -253,9 +253,16 @@ function endAttackStep(){
 function battleStep(){
 	if(battleState == 0){         // Display Text
 		battleState = 1;
-		setBattleText(characters[selectedCharacter][0] + "'s turn.");
-		selectNoCharacter();
-		selectCharacter(selectedCharacter);
+
+		if(characters[selectedCharacter][1] == 0){
+			endAttackStep();
+
+			battleStep();
+		}else{
+			setBattleText(characters[selectedCharacter][0] + "'s turn.");
+			selectNoCharacter();
+			selectCharacter(selectedCharacter);
+		}
 	}else if(battleState == 1){   // Attack
 		hideMenu();
 		addAnimation(["noPress", 1]);
@@ -277,27 +284,22 @@ function battleStep(){
 			}else if(menuOptions[selectedMenu] == "Tactics"){
 				menuOptions = characters[selectedCharacter][7];
 				showMenu(selectedCharacter);
+
 			}else if(menuOptions[selectedMenu] == "Back"){
 				menuOptions = battleOptions;
 				showMenu(selectedCharacter);
+
 			}else if(menuOptions[selectedMenu] == "Nip Slip"){
 				isNipSlip = true;
 				setBattleText("Elaine lets a nip slip!<br />The enemy might be distracted.");
 				menuOptions = battleOptions;
+
 				endAttackStep();
 			}
 		}else{
 			setBattleText(characters[selectedCharacter][0] + " is dead!");
 
-			var result = selectNextCharacter();
-
-			if(result == 1){
-				battleState = 3;
-			}else if(result == 0){
-				battleState = 0;
-			}else{
-				battleState = 4;
-			}
+			endAttackStep();
 		}
 	}else if(battleState == 2){   // Battle Over
 		startBattle(["Jane", 30, 30, 7, 2, "images/jane.jpg"]);
@@ -344,7 +346,8 @@ function battleStep(){
 			battleState = 4;
 		}
 
-		for(var i = 0; i < 4; i++){         // Stop Defending
+		//Stop Defending
+		for(var i = 0; i < 4; i++){
 			characters[i][4] = 0;
 		}
 		isNipSlip = false;
@@ -358,18 +361,14 @@ function battleStep(){
 function doAnimation(){
 	for(var i = animations.length - 1; i >= 0; i--){
 		if(animations[i][0] == "damage"){
-			//animations[i][2] -= 1;
+			animations[i][2] -= 1;
 
-			damageCharacter(animations[i][1], animations[i][2]);
+			damageCharacter(animations[i][1], 1);
 			updateHealth();
-
-			animations.splice(i, 1);
-
-			/* Code for scrolling health.
 
 			if(animations[i][2] == 0){ 
 				animations.splice(i, 1);
-			}*/
+			}
 		}else if(animations[i][0] == "noPress"){
 			animations[i][1] -= 1;
 
