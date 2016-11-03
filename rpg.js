@@ -233,6 +233,7 @@ function startBattle(arr){
 	menuOptions = battleOptions;
 	battleState = 0;
 	gameMode    = 0;
+	isNipSlip   = false;
 	document.getElementById("main").style.visibility = "visible";
 	document.getElementById("main2").style.visibility = "hidden";
 	selectedCharacter = 0;
