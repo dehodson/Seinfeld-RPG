@@ -3,4 +3,4 @@ An RPG based off of the TV show Seinfeld with retro influences.
 
 Made just for fun.
 
-Background images made by [beesandbombs](https://beesandbombs.tumblr.com/).
+Battle backgrounds were made by [beesandbombs](https://beesandbombs.tumblr.com/). Used with permission.
