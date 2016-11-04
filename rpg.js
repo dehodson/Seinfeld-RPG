@@ -266,7 +266,6 @@ function battleStep(){
 		}
 	}else if(battleState == 1){   // Attack
 		hideMenu();
-		addAnimation(["noPress", 1]);
 
 		if(characters[selectedCharacter][1] > 0){
 			if(menuOptions[selectedMenu] == "Attack"){
@@ -306,7 +305,6 @@ function battleStep(){
 		startBattle(["Jane", 30, 30, 7, 2, "images/jane.jpg"]);
 	}else if(battleState == 3){   // Enemy Attacking
 		selectNoCharacter();
-		addAnimation(["noPress", 1]);
 
 		var target = randomLivingCharacter();
 		var defend = 0;
@@ -439,9 +437,10 @@ function keyPressed(event){
 	if(event.which == 13 && canPress){  //enter
 		if(gameMode == 0){
 			battleStep();
+			addAnimation(["noPress", 1]);
 		}else if(gameMode == 1){
 			cutsceneStep();
-			addAnimation["noPress", 1];
+			addAnimation(["noPress", 1]);
 		}
 	};
 	if(isMenu){

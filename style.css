@@ -33,6 +33,9 @@ body{
     background-position: 50% 0;
     background-size: cover;
 }
+#main.bg2:before{
+	background-image: url('images/bg6.gif');
+}
 #main:after {
     content: ' ';
     display: block;
@@ -140,6 +143,7 @@ body{
 	position: absolute;
 	left: 349px;
 	top: 200px;
+	border: 1px solid black;
 	border-radius: 5px;
 	transition: top 0s;
 }
