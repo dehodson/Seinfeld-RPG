@@ -411,11 +411,10 @@ function addAnimation(animation){
 
 function startCutscene(arr){
 	cutscene = arr;
-	document.getElementById("main2").style.backgroundImage = "url('"+cutscene[0][0]+"')";
-	cutscenePosition = 1;
+	cutscenePosition = -1;
 	gameMode = 1;
-	document.getElementById("character-speech-text").innerHTML = cutscene[cutscenePosition][1];
-	document.getElementById("character-speech-portrait").src   = cutscene[cutscenePosition][0];
+
+	cutsceneStep();
 }
 
 function cutsceneStep(){
@@ -453,5 +452,3 @@ function keyPressed(event){
 }
 
 startCutscene(cutscene);
-
-//startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
