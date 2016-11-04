@@ -1,6 +1,6 @@
 var gameMode = 1;
 
-var characters = [["George", 30, 30, 5, 0, 1, 1, ["Back"]], ["Jerry", 25, 35, 4, 0, 2, 1, ["Back"]], ["Elaine", 23, 23, 3, 0, 5, 1, ["Back", "Nip Slip"]], ["Kramer", 20, 20, 6, 0, 3, 1, ["Back"]]];
+var characters = [["George", 30, 30, 5, 0, 1, 1, ["Back"]], ["Jerry", 25, 35, 4, 0, 2, 1, ["Back"]], ["Elaine", 23, 23, 3, 0, 5, 1, ["Back", "Nip Slip"]], ["Kramer", 20, 20, 6, 0, 3, 1, ["Back", "Hot Tub Soak"]]];
 var enemy      = ["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"];
 var selectedCharacter = 0;
 var battleState = 0;
@@ -43,6 +43,16 @@ function estimateCharacterDamage(character, damage){
 	}
 	
 	return estimate;
+}
+
+function healCharacter(character, health){
+	if(characters[character][1] > 0){
+		characters[character][1] += health;
+
+		if(characters[character][1] > characters[character][2]){
+			characters[character][1] = characters[character][2];
+		}
+	}
 }
 
 function killCharacter(character){
@@ -292,8 +302,18 @@ function battleStep(){
 			}else if(menuOptions[selectedMenu] == "Nip Slip"){
 				isNipSlip = true;
 				setBattleText("Elaine lets a nip slip!<br />The enemy might be distracted.");
-				menuOptions = battleOptions;
 
+				menuOptions = battleOptions;
+				endAttackStep();
+			}else if(menuOptions[selectedMenu] == "Hot Tub Soak"){
+				setBattleText("Kramer: \"This'll fix you right up.\"<br />The gang was healed for 3!")
+
+				for(var i = 0; i < 4; i++){
+					healCharacter(i, 3);
+				}
+
+				updateHealth();
+				menuOptions = battleOptions;
 				endAttackStep();
 			}
 		}else{
