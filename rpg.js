@@ -284,6 +284,8 @@ function battleStep(){
 				if(outcome == -1){
 					battleState = 2;
 				}else{
+					document.getElementById("enemy").className = "hurt";
+					addAnimation(["hurt"]);
 					endAttackStep();
 				}
 			}else if(menuOptions[selectedMenu] == "Defend"){
@@ -395,6 +397,9 @@ function doAnimation(){
 				animations.splice(i, 1);
 				canPress = true;
 			}
+		}else if(animations[i][0] == "hurt"){
+			animations.splice(i, 1);
+			document.getElementById("enemy").className = "";
 		}
 	}
 
@@ -421,6 +426,8 @@ function addAnimation(animation){
 		}
 	}else if(animation[0] == "noPress"){
 		canPress = false;
+		animations.push(animation);
+	}else{
 		animations.push(animation);
 	}
 
