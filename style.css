@@ -139,17 +139,22 @@ body{
 	right:  0;
 	max-width: 170px;
 }
+@keyframes HURT-ENEMY{
+  0%   { opacity: 1; transform:rotate(0deg); }
+  30%  { opacity: .5; transform:rotate(10deg); }
+  50%  { opacity: .75;}
+  70%  { opacity: .5; transform:rotate(-10deg); }
+  100% { opacity: 1; transform:rotate(0deg); }
+}
 #enemy{
 	position: absolute;
 	left: 349px;
 	top: 200px;
 	border: 1px solid black;
 	border-radius: 5px;
-	transition: all .2s ease-out;
 }
 #enemy.hurt{
-	opacity:.5;
-	transform:rotate(30deg);
+	animation: HURT-ENEMY .4s infinite;
 }
 #enemy.defeated{
 	top: 800px;

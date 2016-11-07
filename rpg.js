@@ -285,7 +285,7 @@ function battleStep(){
 					battleState = 2;
 				}else{
 					document.getElementById("enemy").className = "hurt";
-					addAnimation(["hurt"]);
+					addAnimation(["hurt", 2]);
 					endAttackStep();
 				}
 			}else if(menuOptions[selectedMenu] == "Defend"){
@@ -398,8 +398,12 @@ function doAnimation(){
 				canPress = true;
 			}
 		}else if(animations[i][0] == "hurt"){
-			animations.splice(i, 1);
-			document.getElementById("enemy").className = "";
+			animations[i][1] -= 1;
+
+			if(animations[i][1] == 0){
+				animations.splice(i, 1);
+				document.getElementById("enemy").className = "";
+			}
 		}
 	}
 
