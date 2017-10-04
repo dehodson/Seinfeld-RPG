@@ -12,7 +12,11 @@ var selectedMenu  = 0;
 var isMenu 		  = false;
 var battleOptions = ["Attack", "Defend", "Tactics"];
 var menuOptions   = battleOptions;
-var victoryQuotes = ["Yeah baby!", "All right!", "Get out!", "Giddy up!"]
+var victoryQuotes = [["Yeah baby!", "This woman hates me so much Im starting to like her"],
+					 ["All right!","She had man hands!"], 
+					 ["Get out!", "I'm speechless. I'm without speech."],
+					 ["Giddy up!", "Moles - Freckles' ugly cousin."]
+					]
 var isNipSlip     = false;
 
 var cutscene = [["images/prison.jpg"], ["images/jerry.jpg", "Well, we're finally out of prison. What's the first thing we do?"], ["images/kramer.jpg", "We celebrate, of course! Let's go get a box of cuban cigars."], ["images/cigarstore.jpg"], ["images/george.jpg", "Wait a minute... They're out of cubans!"], ["images/jerry.jpg", "Out of cubans?"], ["images/george.jpg", "Completely out!"], ["images/elaine.jpg", "Hold on, look who got the last box!"], ["images/jerry.jpg", "...Newman!"]];
@@ -218,7 +222,7 @@ function attackEnemy(character){
 	var damageTaken = damageEnemy(characters[character][3]);
 	if(damageTaken == -1){
 		var statusUpdate = characters[character][0] + " strikes " + enemy[0] + " down!<br />";
-		statusUpdate += characters[character][0] + ": \"" + victoryQuotes[character] + "\"";
+		statusUpdate += characters[character][0] + ": \"" + victoryQuotes[character][getRandomInt(0,2)] + "\"";
 		setBattleText(statusUpdate);
 		selectNoCharacter();
 		animations = [];
