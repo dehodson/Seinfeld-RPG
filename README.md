@@ -1,4 +1,4 @@
-##Seinfeld RPG
+## Seinfeld RPG
 An RPG based off of the TV show Seinfeld with retro influences.
 
 Made just for fun.
