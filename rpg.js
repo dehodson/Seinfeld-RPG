@@ -1,7 +1,10 @@
 var gameMode = 1;
 
 var characters = [["George", 30, 30, 5, 0, 1, 1, ["Back"]], ["Jerry", 25, 35, 4, 0, 2, 1, ["Back"]], ["Elaine", 23, 23, 3, 0, 5, 1, ["Back", "Nip Slip"]], ["Kramer", 20, 20, 6, 0, 3, 1, ["Back", "Hot Tub Soak"]]];
-var enemy      = ["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"];
+var enemyArray      = [["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"], 
+				  ["Jane", 30, 30, 7, 2, "images/jane.jpg"]
+				 ];
+var enemyCount = 0;
 var selectedCharacter = 0;
 var battleState = 0;
 var animations = [];
@@ -327,8 +330,12 @@ function battleStep(){
 
 			endAttackStep();
 		}
-	}else if(battleState == 2){   // Battle Over
-		startBattle(["Jane", 30, 30, 7, 2, "images/jane.jpg"]);
+	}else if(battleState == 2){   // Battle Over , your team won
+		//startBattle(["Jane", 30, 30, 7, 2, "images/jane.jpg"]);
+		enemyCount++;
+		console.log(enemyCount + " this is the enemy count number")
+		console.log(enemyArray[enemyCount] + " this h")
+		startBattle(enemyArray[enemyCount]);
 	}else if(battleState == 3){   // Enemy Attacking
 		selectNoCharacter();
 
@@ -448,7 +455,7 @@ function startCutscene(arr){
 	cutscene = arr;
 	cutscenePosition = -1;
 	gameMode = 1;
-
+	console.log(enemy[enemyCount])
 	cutsceneStep();
 }
 
@@ -463,7 +470,9 @@ function cutsceneStep(){
 			document.getElementById("character-speech-portrait").src   = cutscene[cutscenePosition][0];
 		}
 	}else{
-		startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
+		//startBattle(["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"]);
+		console.log(enemyArray[enemyCount])
+		startBattle(enemyArray[enemyCount]);
 	}
 }
 
