@@ -1,7 +1,7 @@
 var gameMode = 1;
 
 var characters = [["George", 30, 30, 5, 0, 1, 1, ["Back"]], ["Jerry", 25, 35, 4, 0, 2, 1, ["Back"]], ["Elaine", 23, 23, 3, 0, 5, 1, ["Back", "Nip Slip"]], ["Kramer", 20, 20, 6, 0, 3, 1, ["Back", "Hot Tub Soak"]]];
-var enemyArray      = [["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"], 
+var enemyArray = [["Enraged Newman", 40, 40, 10, 1, "images/newman.jpg"], 
 				  ["Jane", 30, 30, 7, 2, "images/jane.jpg"]
 				 ];
 var enemyCount = 0;
